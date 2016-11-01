@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include <windows.h>
-
-#define DEBUG1 1
-#define DEBUG2 1
-#define DEBUG3 0
+#include "effic.h"
 
 int main()
 {
@@ -13,77 +8,47 @@ int main()
 	int i = 0, j = 0;
 	printf("Start test ...\n");
 
-#if DEBUG1
-	start1 = GetTickCount();//≤‚ ‘“ª
-	for(i = 0; i<500; i++)
+#if DEBUG1//≤‚ ‘“ª
+	start1 = GetTickCount();
+	for(i = 0; i<CONDITION1; i++)
 	{
-		if( 0 == i%2 ) // œ»≈–∂œ‘Ÿ÷¥––
-		{
-			for(j = 0; j<100; j++)         
-			{
-				printf("bit\n");         
-			}
-		}
-		else
-		{
-			for(j = 0; j<100; j++)
-			{
-				printf("world\n");
-			}
+		for(j = 0; j<CONDITION2; j++){
+			//reverse_bit1( i ); 
+			printf("test1...\n");
 		}
 	}
 	end1 = GetTickCount();
 #endif
 
-#if DEBUG2
-	start2 = GetTickCount();//≤‚ ‘∂˛
-	for(i = 0; i<500; i++)
+#if DEBUG2//≤‚ ‘∂˛
+	start2 = GetTickCount();
+	for(i = 0; i<CONDITION2; i++)
 	{
-		for(j = 0; j<100; j++)          //œ»÷¥––‘Ÿ≈–∂œ
-		{
-			if( 0 == (i)%2 )       
-			{
-				printf("bit\n");
-			}
-			else
-			{
-				printf("world\n");
-			}
+		for(j = 0; j<CONDITION1; j++){
+			//reverse_bit2( i );
+			printf("test2...\n");
 		}
 	}
 	end2 = GetTickCount();
 #endif
 
-#if DEBUG3
-	start3 = GetTickCount();//≤‚ ‘»˝
-	for(i = 0; i<500; i++)
+#if DEBUG3//≤‚ ‘»˝
+	start3 = GetTickCount();
+	for(i = 0; i<CONDITION; i++)
 	{
-		for(j = 0; j<100; j++)          
-		{
-			if( 0 == (i)%2 )       
-			{
-				printf("bit\n");
-			}
-			else
-			{
-				printf("world\n");
-			}
-		}
+
 	}
 	end3 = GetTickCount();
 #endif	
 	
-
-#if DEBUG1           
-	printf( "time1: %d\n", end1 - start1 );//≤‚ ‘“ª
+#if DEBUG1
+	printf( "Time of test1: %d\n", end1 - start1 );
 #endif
-
-#if DEBUG2          
-	printf( "time2: %d\n", end2 - start2 );//≤‚ ‘∂˛
+#if DEBUG2
+	printf( "Time of test2: %d\n", end2 - start2 );
 #endif
-
-#if DEBUG3          
-	printf( "time3: %d\n", end3 - start3 );//≤‚ ‘»˝
+#if DEBUG3
+	printf( "Time of test3: %d\n", end3 - start3 );
 #endif
 	
 	printf("End test ...\n");
