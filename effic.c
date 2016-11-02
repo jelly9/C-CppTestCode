@@ -1,5 +1,76 @@
 #include "effic.h"
 
+void test()
+{
+	int start1 = 0, end1   = 0;
+	int start2 = 0, end2   = 0;
+	int start3 = 0, end3   = 0;
+	int start4 = 0, end4   = 0;
+	int i = 0, j = 0;
+
+	printf("Start test...\n\n");
+
+	#if DEBUG1//²âÊÔÒ»
+		start1 = GetTickCount();
+		for(i = 0; i<CONDITION1; i++)
+		{
+			reverse_bit1( i );
+		}
+		end1 = GetTickCount();
+	#endif
+
+	#if DEBUG2//²âÊÔ¶ş
+		start2 = GetTickCount();
+		for(i = 0; i<CONDITION1; i++)
+		{
+			reverse_bit2( i );
+		}
+		end2 = GetTickCount();
+	#endif
+
+	#if DEBUG3//²âÊÔÈı
+		start3 = GetTickCount();
+		for(i = 0; i<CONDITION1; i++)
+		{
+			printf("aaaa\n");
+		}
+		end3 = GetTickCount();
+	#endif	
+
+	#if DEBUG4//²âÊÔËÄ
+		start4 = GetTickCount();
+		for(i = 0; i<CONDITION1; i++)
+		{
+			printf("zzzz\n");
+		}
+		end4 = GetTickCount();
+	#endif
+	
+	#if DEBUG1
+		printf( "Time of test1: %d\n", end1 - start1 );
+	#endif
+	#if DEBUG2
+		printf( "Time of test2: %d\n", end2 - start2 );
+	#endif
+	#if DEBUG3
+		printf( "Time of test3: %d\n", end3 - start3 );
+	#endif
+	#if DEBUG4
+		printf( "Time of test4: %d\n", end4 - start4 );
+	#endif
+
+	printf("\nEnd test...\n");
+}
+
+void meun()  //´òÓ¡²Ëµ¥
+{
+	printf("     Welcome to test      \n");
+	printf("---------------------------\n");
+	printf("-----  1.Start test.   ----\n");
+	printf("-----  0.Exit test.    ----\n");
+	printf("---------------------------\n");
+}
+
 uint reverse_bit1(uint x)                                                                    
 {  
     uint i, ret=0;  
@@ -24,3 +95,4 @@ int reverse_bit2(int num)
 	ret <<= (31-count);
 	return ret;
 }
+
