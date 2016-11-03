@@ -81,18 +81,18 @@ uint reverse_bit1(uint x)
     return ret;  
 }  
 
-int reverse_bit2(int num)
+int reverse_bit2(int num)             //00000000 00000000 00000000 00000001
 {
 	int ret = 0;
 	int count = 0;
 	while(num)
 	{
-		count++;                      //00000000 00000000 00000000 00000001
-		ret = ret + num%2;
-		ret <<= 1;
-		num >>= 1;
+		count++;                      
+		ret += num%2;                //                                   1
+		ret <<= 1;                       //                              10
+		num >>= 1;                    //00000000 00000000 00000000 00000000
 	}
-	ret <<= (31-count);
+	ret <<= (31-count);               //10000000 00000000 00000000 00000000 
 	return ret;
 }
 
