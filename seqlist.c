@@ -16,13 +16,40 @@ typedef struct seqlist
 }seqlist;
 
 
-int Initlist( seqlist *L );
-int Insertelem(seqlist *L, int pos, ElemType e );
-int Delectelem( seqlist *L, int pos );
-int Printlist(seqlist *L);
-int Exchelem(seqlist *L,int pos,ElemType e);
+int Initlist( seqlist *L );//初始化顺序表
+int Insertelem( seqlist *L, int pos, ElemType e );//在第pos个位置插入元素e
+int Delectelem( seqlist *L, int pos, ElemType e );//删除
+int Printlist( seqlist *L );//打印顺序表
+int UpdateElem( seqlist *L,int pos,ElemType e );//替换一个元素
+int ListLenght( seqlist *L );//返回元素个数
+int ListSize( seqlist *L );//返回大小
+ElemType Getelem( seqlist *L, int pos);//返回一个元素的值
 
-int Initlist( seqlist *L )//初始化线性表表
+//获取该位置元素的值
+ElemType Getelem( seqlist *L, int pos)
+{
+	 if(pos <= 0 || pos > L->listlength+1)
+    {
+        printf("Error pos\n");
+        exit(1);
+    }
+	 return L->data[pos-1];
+}
+
+//求顺序表大小
+int ListSize( seqlist *L )
+{
+	return L->listsize;
+}
+
+//求长度
+int ListLength( seqlist *L )
+{
+	return L->listlength;
+}
+
+//初始化线性表表
+int Initlist( seqlist *L )
 {
 	printf("Start initseqlist...\n");
 	L->data = ( ElemType* )malloc( MAXSIZE*sizeof(ElemType) );
@@ -35,7 +62,8 @@ int Initlist( seqlist *L )//初始化线性表表
 	return 1;
 }
 
-int Initelem(seqlist *L)//初始化元素
+//初始化元素
+int Initelem(seqlist *L)
 {
 	int i = 0;
 	int n = 0;
@@ -53,10 +81,12 @@ int Initelem(seqlist *L)//初始化元素
 	return 1;
 }
 
-int Insertelem(seqlist *L, int pos, ElemType e )//插入
+//插入元素
+int Insertelem(seqlist *L, int pos, ElemType e )
 {
 	int j = 0;
-	if( L->listlength >= L->listsize ) {//合法性检验
+	if( L->listlength >= L->listsize ) //插入位置合法性检验
+	{
 		printf("List is full!\n");
 		return 0;
 	}
@@ -73,27 +103,30 @@ int Insertelem(seqlist *L, int pos, ElemType e )//插入
 	L->listlength++;
 	return 1;
 }
-int Printlist(seqlist *L)//打印
+
+//打印顺序表
+int Printlist(seqlist *L)
 {
 	int i = 0;
-	printf(" =====================\n");
+	printf("=====================\n");
 	for( i = 0; i<L->listlength; i++)
 	{
 		printf("%4d", L->data[i]);
-		if( 4 == i%5 )
+		if( 4 == i%5 )//格式控制，每行打印五个元素
 			printf("\n");
 	}
-	if( 0 != i%5 )//格式控制
+	if( 0 != i%5 )
 			printf("\n");
-	printf("\n   length = %d\n", L->listlength);
-	printf("   size = %d\n", L->listsize);
-	printf(" =====================\n");
+	printf("\n length = %d\n",ListLength( L) );
+	printf(" size = %d\n", ListSize( L ));
+	printf("=====================\n");
 	return 1;
 }
-int Delectelem( seqlist *L, int pos )//删除
+
+//删除元素
+int Delectelem( seqlist *L, int pos, ElemType e )
 {
 	int j = 0;
-	int e = 0;
 	if( L->listlength >= L->listsize ) {//合法性检验
 		printf("List is full!\n");
 		return 0;
@@ -113,7 +146,7 @@ int Delectelem( seqlist *L, int pos )//删除
 }
 
 //替换pos位置元素的值
-int Exchelem(seqlist *L,int pos,ElemType e)
+int UpdateElem(seqlist *L,int pos,ElemType e)
 {
     if(pos<1 || pos>L->listlength){
         printf("Error pos!\n");
@@ -126,14 +159,18 @@ int Exchelem(seqlist *L,int pos,ElemType e)
 
 void meun()//打印菜单
 {
-	printf("\n       Welcome          \n");
-	printf("--------------------------\n");
-	printf("-----  1.Initelem.    ----\n");
-	printf("-----  2.Insertelem.  ----\n");
-	printf("-----  3.Delectelem.  ----\n");
-	printf("-----  4.Exchelem.  ----\n");
-	printf("-----  0.Exit.        ----\n");
-	printf("--------------------------\n");
+
+	printf("\n       Welcome      \n");
+	printf("=====================\n");
+	printf("--  1.Initlist.    --\n");
+	printf("--  2.Initelem.    --\n");
+	printf("--  3.Insertelem.  --\n");
+	printf("--  4.Delectelem.  --\n");
+	printf("--  5.UpdateElem.  --\n");
+	printf("--  6.GetElem.     --\n");
+	printf("--  0.Exit.        --\n");
+	printf("=====================\n");
+
 }
 
 int main()
@@ -142,7 +179,7 @@ int main()
 	int e = 0;
 	int select = 0;
 	seqlist L;
-	Initlist(&L);
+	//Initlist(&L);
 	do
 	{
 		Printlist(&L);
@@ -151,19 +188,30 @@ int main()
 		scanf("%d", &select);
 		switch(select)
 		{
-			case 1:Initelem(&L);break;
-			case 2:printf("Please pos and elem:");
+			case 1:Initlist(&L);break;
+
+			case 2:Initelem(&L);break;
+
+			case 3:printf("Please pos and elem:");
 				scanf("%d %d", &pos, &e);
 				Insertelem(&L, pos, e);
 				break;
-			case 3:printf("Please pos:");
+
+			case 4:printf("Please pos:");
 				scanf("%d", &pos);
-				Delectelem( &L, pos );
+				printf("The elem %d was delected!\n", Delectelem( &L, pos,e ) );
 				break;
-			case 4:printf("Please pos and elem:");
+
+			case 5:printf("Please pos and elem:");
 				scanf("%d %d", &pos, &e);
-				 Exchelem(&L, pos, e);
+				UpdateElem(&L, pos, e);
 				break;
+
+			case 6:printf("Please pos:");
+				scanf("%d", &pos);
+				printf("The elem is >: %d \n",Getelem( &L, pos ) );
+				break;
+
 			case 0:printf("Exit...\n");break;
 			default:printf("Error select...\n");
 		}

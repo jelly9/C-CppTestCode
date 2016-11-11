@@ -1,2 +1,24 @@
 #include <stdio.h>
-#include <windows.h>
+#include <windows.h> 
+
+typedef struct
+{
+	int index;//Ö¸Êý
+	int coef; //µ×Êý
+}seqlist;
+
+
+
+
+
+int main()
+{
+
+
+
+
+
+
+	system("pause");
+	return 0;
+}
