@@ -1,2 +1,9 @@
 #include <stdio.h>
-#include <windons.h>
+#include <windows.h>
+
+int main()
+{
+
+	system("pause");
+	return 0;
+}

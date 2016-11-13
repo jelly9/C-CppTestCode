@@ -13,7 +13,7 @@ int main()
 	float left,right;
 	char oper[5] = {' ', '+', '-', '*', '/'};
 	printf("输入五个字符，之间用空格隔开:");
-	for( j = 1; j < 5; j++ )
+	for( j = 1; j <= 5; j++ )
 	{
 		scanf("%d", &num[j]);
 	}
@@ -31,7 +31,7 @@ int main()
 									left = 0;
 									right = num[1];
 									sign = 1;
-									for( j = 0; j <= 4; j++)
+									for( j = 1; j <= 4; j++)
 									{
 										switch( oper[i[j]] )
 										{
@@ -56,12 +56,12 @@ int main()
 									if( left + sign * right == result )
 									{
 										count++;
-										printf("%3d", count);
+										printf("%-3d: ", count);
 										for( j = 1; j <= 4; j++)
 										{
 											printf("%d%c", num[j], oper[i[j]]);
 										}
-										printf("%d=%d\n", num[5], result);
+										printf("%d = %d\n", num[5], result);
 									}
 								}
 							}
