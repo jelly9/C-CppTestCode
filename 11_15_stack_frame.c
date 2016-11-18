@@ -3,7 +3,8 @@
 
 void *main_ret = NULL;
 
-void bug()
+void
+	bug()
 {
 	int flag = 0;
 	int *p = &flag;
@@ -19,12 +20,12 @@ int fun(int x, int y)
 {
 	int c = 0xcccccccc;
 	int *p = &x;
-	printf("%p\n%p\n", &c, &x);
+	//printf("address_c   : %p\naddress_x   : %p\naddress_fun : %p\n", &c, &x, fun);
 
-	printf("i am a function.\n");
+	/*printf("i am a function.\n");
 	p--;
 	main_ret = *p;
-	*p = (int)bug;
+	*p = (int)bug;*/
 
 
 	/*printf("before : %x\n", y);
@@ -41,10 +42,10 @@ int main()
 	int a = 0xaaaaaaaa;
 	int b = 0xbbbbbbbb;
 	int ret = fun(a, b);
-	_asm
+	/*_asm
 	{
 		sub esp, 4
-	}
+	}*/
 
 	printf("you should run here.\n");
 
