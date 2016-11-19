@@ -19,8 +19,7 @@ void
 int fun(int x, int y)
 {
 	int c = 0xcccccccc;
-	int *p = &x;
-	//printf("address_c   : %p\naddress_x   : %p\naddress_fun : %p\n", &c, &x, fun);
+	printf("%p\n%p\n%p\n", &c, &x, fun);
 
 	/*printf("i am a function.\n");
 	p--;
