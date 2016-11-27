@@ -3,7 +3,7 @@
 #include <windows.h>
 #include <time.h>
 
-#define N 5
+#define N 10
 
 void swap(int *x, int *y)//交换
 {
@@ -22,7 +22,7 @@ void show(int arr[], int n)//打印数组
 	printf("\n");
 }
 
-void setarr(int arr[], int n)//给数组赋值
+void setarr(int arr[], int n)//生成随机数给数组赋值
 {
 	int i = 0;
 	srand((unsigned)time(NULL));
@@ -42,14 +42,14 @@ void select_sort(int arr[], int len)
 	for(i = 0; i < len-1; i++)
 	{
 		pos = i;
-		for(j = i+1; j < len; j++)//在无序组中找最小值
+		for(j = i+1; j < len; j++)//在无序组中找最小值放到有序组中
 		{
 			if(arr[pos] > arr[j])
 			{
 				pos = j;
 			}
 		}
-		if(pos != i) ·																																																																						
+		if(pos != i)						
 		{
 			swap(&arr[i], &arr[pos]);
 		}
@@ -58,8 +58,8 @@ void select_sort(int arr[], int len)
 
 int main()
 {
-	int a[N] = {5,4,3,2,1};
-	//setarr(a, N);
+	int a[N] = {0};
+	setarr(a, N);
 
 	show(a, N);
 	select_sort(a, N);
