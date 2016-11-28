@@ -19,20 +19,51 @@ int intCmp(void *x, void *y)
 	return *_x - *_y;
 }
 
+void swap(void *x, void *y, int n)
+{
+	int i = 0;
+	char *_x = (char*)x;
+	char *_y = (char*)y;
+	for(i = 0; i < n; i++)
+	{
+		*_x ^= *_y;
+		*_y ^= *_x;
+		*_x ^= *_y;
+		_x++;
+		_y++;
+	}
+}
+
 void bubbleSort(void *data, int nums, int width, int (*cmp)(void*, void*))
 {
-	assert(data);
-
-	int i = nums - 1;
+	int i = 0;
 	int j = 0;
-	int pos = 0;
+	int flag = 0;
 	char *start = (char*)data;
-	while(i)
+	int k = 0;
+	assert(data);
+	
+	for(i = 0; i < nums-1; i++)
 	{
-		for(j = 0; j < i; j++)
+		flag = 0;
+		for(j = 0; j < nums-1-i; j++)
 		{
-			if()
-				swap(&arr[j], &arr[j+1]);
+			if( cmp(start, start+width) > 0 )
+			{
+				flag = 1;
+				for(k = 0; k < width; k++)
+				{
+					start[k] ^= start[k+width];
+					start[k+width] ^= start[k];
+					start[k] ^= start[k+width];
+
+				}
+			}
+			start += width;
+		}
+		if(!flag)
+		{
+			break;
 		}
 	}
 
