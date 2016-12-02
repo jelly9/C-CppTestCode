@@ -19,12 +19,12 @@ int intCmp(void *x, void *y)
 	return *_x - *_y;
 }
 
-void swap(void *x, void *y, int n)
+void swap(void *x, void *y, int width)
 {
 	int i = 0;
 	char *_x = (char*)x;
 	char *_y = (char*)y;
-	for(i = 0; i < n; i++)
+	for(i = 0; i < width; i++)
 	{
 		*_x ^= *_y;
 		*_y ^= *_x;
@@ -36,36 +36,53 @@ void swap(void *x, void *y, int n)
 
 void bubbleSort(void *data, int nums, int width, int (*cmp)(void*, void*))
 {
-	int i = 0;
+	int i = nums-1;
 	int j = 0;
-	int flag = 0;
+	int pos = 0;
 	char *start = (char*)data;
-	int k = 0;
 	assert(data);
-	
-	for(i = 0; i < nums-1; i++)
-	{
-		flag = 0;
-		for(j = 0; j < nums-1-i; j++)
-		{
-			if( cmp(start, start+width) > 0 )
-			{
-				flag = 1;
-				for(k = 0; k < width; k++)
-				{
-					start[k] ^= start[k+width];
-					start[k+width] ^= start[k];
-					start[k] ^= start[k+width];
 
-				}
-			}
-			start += width;
-		}
-		if(!flag)
+	while(i)
+	{ 
+		pos = 0;
+		for(j = 0; j < i; j++)
 		{
-			break;
+			if(cmp(start, start+width)>0)
+			{
+				start[j] ^= start[j+width];
+				start[j+width] ^= start[j];
+				start[j] ^= start[j+width];
+				//swap(start,start+width,width);
+				pos = j;
+			}
 		}
+		i = pos;
 	}
+	
+	//for(i = 0; i < nums-1; i++)
+	//{
+	//	flag = 0;
+	//	//start = (char*)data;
+	//	for(j = 0; j < nums-1-i; j++)
+	//	{
+	//		if( cmp(start, start+width) > 0 )
+	//		{
+	//			for(k = 0; k < width; k++)
+	//			{
+	//				/*start[k] ^= start[k+width];
+	//				start[k+width] ^= start[k];
+	//				start[k] ^= start[k+width];*/
+	//				
+	//			}
+	//			flag = 1;
+	//		}
+	//		start += width;
+	//	}
+	//	if(!flag)
+	//	{
+	//		break;
+	//	}
+	//}
 
 }
 
