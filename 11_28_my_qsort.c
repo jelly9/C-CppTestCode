@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <windows.h>
 #include <assert.h>
+#include <search.h>
 
+
+//打印
 void show(int arr[], int len)
 {
 	int i = 0;
@@ -12,6 +15,7 @@ void show(int arr[], int len)
 	printf("\n");
 }
 
+//比较整形
 int intCmp(void *x, void *y)
 {
 	int *_x = (int*)x;
@@ -19,11 +23,16 @@ int intCmp(void *x, void *y)
 	return *_x - *_y;
 }
 
+//交换
 void swap(void *x, void *y, int width)
 {
+	assert(x);
+	assert(y);
+
 	int i = 0;
 	char *_x = (char*)x;
 	char *_y = (char*)y;
+
 	for(i = 0; i < width; i++)
 	{
 		*_x ^= *_y;
@@ -34,55 +43,41 @@ void swap(void *x, void *y, int width)
 	}
 }
 
+//冒泡排序
 void bubbleSort(void *data, int nums, int width, int (*cmp)(void*, void*))
 {
-	int i = nums-1;
+	int i = 0;
 	int j = 0;
-	int pos = 0;
+	int k = 0;
+	int flag = 0;
 	char *start = (char*)data;
 	assert(data);
 
-	while(i)
-	{ 
-		pos = 0;
-		for(j = 0; j < i; j++)
+	for(i = 0; i < nums-1; i++)
+	{
+		flag = 0;
+		start = (char*)data;
+		for(j = 0; j < nums-1-i; j++)
 		{
-			if(cmp(start, start+width)>0)
+			if( cmp(start, start+width) > 0 )
 			{
-				start[j] ^= start[j+width];
-				start[j+width] ^= start[j];
-				start[j] ^= start[j+width];
-				//swap(start,start+width,width);
-				pos = j;
+				/*for(k = 0; k < width; k++)
+				{
+					start[k] ^= start[k+width];
+					start[k+width] ^= start[k];
+					start[k] ^= start[k+width];
+					
+				}*/
+				swap(start, start+width, width);
+				flag = 1;
 			}
+			start += width;
 		}
-		i = pos;
+		if(!flag)
+		{
+			break;
+		}
 	}
-	
-	//for(i = 0; i < nums-1; i++)
-	//{
-	//	flag = 0;
-	//	//start = (char*)data;
-	//	for(j = 0; j < nums-1-i; j++)
-	//	{
-	//		if( cmp(start, start+width) > 0 )
-	//		{
-	//			for(k = 0; k < width; k++)
-	//			{
-	//				/*start[k] ^= start[k+width];
-	//				start[k+width] ^= start[k];
-	//				start[k] ^= start[k+width];*/
-	//				
-	//			}
-	//			flag = 1;
-	//		}
-	//		start += width;
-	//	}
-	//	if(!flag)
-	//	{
-	//		break;
-	//	}
-	//}
 
 }
 
