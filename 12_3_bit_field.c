@@ -27,9 +27,14 @@ typedef unsigned char uchar;
 
 struct A
 {
-	char a;
-	int b;
-	double c;
+	uint size : 2;
+
+	uchar sex : 1;
+	uchar font : 5;
+	uchar b : 5;
+	uchar a : 5;
+	uint c : 5;
+	
 	
 }obj1;
 struct B
@@ -43,7 +48,7 @@ struct B
 int main()
 {
 	printf("%d\n", sizeof(obj1));//16
-	printf("%d\n", sizeof(obj2));//24
+	//printf("%d\n", offsetof(struct A,size));//24
 	
 
 	//printf("%d\n", sizeof(obj2));
