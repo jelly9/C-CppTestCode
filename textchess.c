@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 
 #include <stdio.h>
-#include "11_14_chess.h"
+#include "threechess.h"
 //#pragma comment(lib,"threechess.lib")
 int main()        //Ö÷º¯Êý
 {

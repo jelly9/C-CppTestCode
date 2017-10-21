@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "11_14_chess.h"
+#include "threechess.h"
 
 void meun()//打印菜单
 {
@@ -23,21 +23,15 @@ void game()//开始游戏
 	display_board(board, ROWS, COLS);
 	do
 	{
-		//player_move(board, ROWS, COLS);
-		computer2_move(board,ROWS,COLS);
-
+		player_move(board, ROWS, COLS);
 		ret = check_win(board,ROWS,COLS);
-		//if( 'X' == ret){ printf("Player win!\n");break; }
-		if( 'X' == ret){ printf("Computer2 win!\n");break; }
-
-		if( 'O' == ret){ printf("Computer1 win!\n");break; }
+		if( 'X' == ret){ printf("Player win!\n");break; }
+		if( 'O' == ret){ printf("Computer win!\n");break; }
 		if( ' ' == ret){ printf("Dogfall!\n");break; }
-		computer1_move(board,ROWS,COLS);
+		computer_move(board,ROWS,COLS);
 		ret = check_win(board,ROWS,COLS);
-		//if( 'X' == ret){ printf("Player win!\n");break; }
-		if( 'X' == ret){ printf("Computer2 win!\n");break; }
-
-		if( 'O' == ret){ printf("Computer1 win!\n");break; }
+		if( 'X' == ret){ printf("Player win!\n");break; }
+		if( 'O' == ret){ printf("Computer win!\n");break; }
 		if( ' ' == ret){ printf("Dogfall!\n");break; }
 	}while(1);
 }
@@ -76,7 +70,7 @@ void player_move(char board[ROWS][COLS],int x,int y)//玩家玩
 		else printf("Error input!\n");
 	}
 }
-void computer1_move(char board[ROWS][COLS],int x,int y)//电脑玩
+void computer_move(char board[ROWS][COLS],int x,int y)//电脑玩
 {
 	int i = 0;
 	int j = 0;
@@ -89,25 +83,6 @@ void computer1_move(char board[ROWS][COLS],int x,int y)//电脑玩
 		{
 			printf("%d %d\n", i+1, j+1);
 			board[i][j] = 'O';
-			display_board(board, ROWS, COLS);
-			break;
-		}
-	}
-}
-
-void computer2_move(char board[ROWS][COLS],int x,int y)//电脑玩
-{
-	int i = 0;
-	int j = 0;
-	printf("Computer input>:");
-	while(1)
-	{
-		i = rand()%3;
-		j = rand()%3;
-		if(  ' ' == board[i][j] )//位置合法性检测
-		{
-			printf("%d %d\n", i+1, j+1);
-			board[i][j] = 'X';
 			display_board(board, ROWS, COLS);
 			break;
 		}
