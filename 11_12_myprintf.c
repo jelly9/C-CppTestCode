@@ -66,6 +66,7 @@ static int my_putint( int a )
     putchar( a%10 + '0');
 }
 
+
 int my_printf(const char *format,...)
 {
     va_list arg_list;
@@ -78,19 +79,20 @@ int my_printf(const char *format,...)
            start++;
            switch(*start)
            {
-               case 'd':
+               case 'd'://整型
                int _int = va_arg(arg_list,int);
                my_putint(_int);
                break;
 
-               case 's':
+               case 's'://字符串
                char *_string = va_arg(arg_list, char *);
                while( *_string )
                {
                    putchar( *_string++ );
                }
                break;
-               case 'c':
+			   
+               case 'c'://字符
                char _char = va_arg(arg_;ist, char);
                putchar(_char);
            }
