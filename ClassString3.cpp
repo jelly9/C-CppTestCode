@@ -5,15 +5,15 @@
 using namespace std;
 #pragma once
 
-//¼ò½à°æstringÀà£¨Ò»ÐÐ¿ÉÒÔÐ´ÍêµÄ´úÂëÎªÊ²Ã´ÒªÐ´Á½ÐÐ =_=!)
+//ç®€æ´ç‰ˆstringç±»ï¼ˆä¸€è¡Œå¯ä»¥å†™å®Œçš„ä»£ç ä¸ºä»€ä¹ˆè¦å†™ä¸¤è¡Œ =_=!)
 class String
 {
 public:
 	String():_str(new char[1]){*_str = '\0';}
 	String(const char* s):_str(new char[strlen(s)+1]){strcpy(_str, s);}
-	String(const String& s):_str(new char[strlen(s._str)+1]){strcpy(_str, s._str);}
+	String(const String& s):_str(new char[strlen(s.str)+1]){strcpy(_str, s.str);}
 	~String(){delete[] _str;}
-	String& operator=(String s){std::swap(_str,s._str);return *this;}
+	String& operator=(String s){std::swap(_str,s.str);return *this;}
 	size_t Size()const{return strlen(_str);}
 	size_t Lengh()const{return strlen(_str);}
 	bool operator>(const String& s){return((strcmp(_str,s._str)==1)?1:0);}
@@ -23,6 +23,7 @@ public:
 	bool operator==(const String& s){return((strcmp(_str,s._str)==0)?1:0);}
 	bool operator!=(const String& s){return!(*this==s);}
 	char operator[](size_t i){return *((*this)._str+i);}
+	char* str(){return _str;}
 private:
 	char* _str;
 };
@@ -44,7 +45,7 @@ int main()
 	//C++ 11
 	/*String(String&& s):_str(s._str){s._str = nullptr;}
 	String& operator=(String&& s){std::swap(_str, s._str); return *this;}*/
-	//Î´µ÷ÓÃÏµÍ³º¯Êý
+	//æœªè°ƒç”¨ç³»ç»Ÿå‡½æ•°
 	/*bool operator>(const String& s){if((_str!=NULL)||(s._str!=NULL)){char* s1=_str,*s2=s._str;while((*s1!='\0')&&(*s2!='\0'))		{if(*s1<*s2||*s1==*s2)return 0;s1++;s2++;}return (*s2=='\0');}return 0;}
 	bool operator<(const String& s){return !((*this>s)||(*this==s));}
 	bool operator==(const String& s){if((_str!=NULL)&&(s._str!=NULL)){char*s1=_str,*s2=s._str;while((*s1!='\0')&&(*s2!='\0')){if	(*s1!=*s2)return 0;s1++;s2++;}return 1;}return 0;}
