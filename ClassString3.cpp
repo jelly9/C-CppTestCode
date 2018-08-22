@@ -1,4 +1,4 @@
-#if 0
+#pragma
 
 #include <iostream>
 #include <string.h>
@@ -51,4 +51,3 @@ int main()
 	bool operator==(const String& s){if((_str!=NULL)&&(s._str!=NULL)){char*s1=_str,*s2=s._str;while((*s1!='\0')&&(*s2!='\0')){if	(*s1!=*s2)return 0;s1++;s2++;}return 1;}return 0;}
 	bool operator!=(const String& s){return (!(*this==s));}*/
 
-#endif
